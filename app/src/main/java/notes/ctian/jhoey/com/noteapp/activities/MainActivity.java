@@ -20,6 +20,7 @@ import com.mikepenz.materialize.util.KeyboardUtil;
 import notes.ctian.jhoey.com.noteapp.R;
 import notes.ctian.jhoey.com.noteapp.fragments.NoteListFragment;
 import notes.ctian.jhoey.com.noteapp.fragments.SettingsFragment;
+import notes.ctian.jhoey.com.noteapp.fragments.ToDoFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NoteListFragment.OnFragmentInteractionListener,
@@ -74,6 +75,8 @@ public class MainActivity extends AppCompatActivity
                                 case 2:
                                     //calendar
                                     try{
+                                        fragment = new ToDoFragment();
+                                        openFragment(fragment, "Calendar");
                                     }catch (Exception ex){
                                         ex.printStackTrace();
                                     }
