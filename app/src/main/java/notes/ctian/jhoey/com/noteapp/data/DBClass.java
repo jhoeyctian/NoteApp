@@ -23,9 +23,14 @@ public class DBClass {
     public static final String KEY_NOTE_CONTENT = "notecontent";
     public static final String KEY_NOTE_DATE = "notedate";
 
+    public static final String KEY_TODO_ROWID = "_id";
+    public static final String KEY_TODO_TASK = "todotask";
+    public static final String KEY_TODO_STATUS = "todostatus";
+
     private static final String DATABASE_NAME = "notedb";
     private static final String DATABASE_NOTE_TABLE = "notetable";
-    private static final int DATABASE_VERSION = 2;
+    private static final String DATABASE_TODO_TABLE = "notetable";
+    private static final int DATABASE_VERSION = 4;
 
     private DBHelper dbHelper;
     private final Context context;
@@ -107,11 +112,16 @@ public class DBClass {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            db.execSQL("CREATE TABLE " + DATABASE_NOTE_TABLE + " ( "
+            db.execSQL("CREATE  TABLE IF NOT EXISTS " + DATABASE_NOTE_TABLE + " ( "
                     + KEY_NOTE_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
                     + KEY_NOTE_TITLE + " TEXT NOT NULL, "
                     + KEY_NOTE_CONTENT + " TEXT NOT NULL, "
                     + KEY_NOTE_DATE + " TEXT NOT NULL); ");
+
+            db.execSQL("CREATE  TABLE IF NOT EXISTS " + DATABASE_TODO_TABLE + " ( "
+                    + KEY_TODO_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
+                    + KEY_TODO_TASK + " TEXT NOT NULL, "
+                    + KEY_TODO_STATUS + " TEXT NOT NULL); ");
         }
 
         @Override

@@ -19,7 +19,7 @@ import notes.ctian.jhoey.com.noteapp.models.LinedEditText;
  * Created by jhoey on 4/5/2017.
  */
 
-public class NoteFragment extends DialogFragment {
+public class NoteFragment extends BaseFragment {
 
     EditText edit_text_id;
     EditText edit_text_title;
