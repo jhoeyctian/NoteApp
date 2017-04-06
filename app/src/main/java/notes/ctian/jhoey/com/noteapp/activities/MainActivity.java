@@ -23,8 +23,7 @@ import notes.ctian.jhoey.com.noteapp.fragments.SettingsFragment;
 import notes.ctian.jhoey.com.noteapp.fragments.ToDoFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NoteListFragment.OnFragmentInteractionListener,
-        SettingsFragment.OnFragmentInteractionListener {
+        implements NoteListFragment.OnFragmentInteractionListener {
 
     Toolbar mToolbar;
     FrameLayout main_container;

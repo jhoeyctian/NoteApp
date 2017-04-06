@@ -20,7 +20,6 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.ViewHo
     private List<Note> mNotes;
     private Context mContext;
 
-
     public NoteListAdapter(List<Note> notes, Context context){
         mNotes = notes;
         mContext = context;
@@ -59,8 +58,6 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView noteTitle, noteCreateDate;
-
-
 
         public ViewHolder(View itemView) {
             super(itemView);
