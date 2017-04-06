@@ -195,7 +195,7 @@ public class NoteListFragment extends Fragment {
 
                 DBClass dbClass = new DBClass(getActivity().getApplicationContext());
                 dbClass.open();
-                dbClass.deleteEntry(selectedNote.getId());
+                dbClass.deleteEntry(selectedNote.getId(), "note");
                 dbClass.close();
 
                 adapter.removeItem(swipedPosition);
@@ -263,7 +263,7 @@ public class NoteListFragment extends Fragment {
 
         DBClass dbClass = new DBClass(getContext());
         dbClass.open();
-        mNotes = dbClass.getData();
+        mNotes = dbClass.getNotes();
         dbClass.close();
 
         mAdapter = new NoteListAdapter(mNotes, getActivity());

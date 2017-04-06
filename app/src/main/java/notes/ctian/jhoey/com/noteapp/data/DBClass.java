@@ -18,14 +18,14 @@ import notes.ctian.jhoey.com.noteapp.models.Note;
 
 public class DBClass {
 
-    public static final String KEY_ROWID = "_id";
-    public static final String KEY_TITLE = "notetitle";
-    public static final String KEY_CONTENT = "notecontent";
-    public static final String KEY_DATE = "notedate";
+    public static final String KEY_NOTE_ROWID = "_id";
+    public static final String KEY_NOTE_TITLE = "notetitle";
+    public static final String KEY_NOTE_CONTENT = "notecontent";
+    public static final String KEY_NOTE_DATE = "notedate";
 
     private static final String DATABASE_NAME = "notedb";
-    private static final String DATABASE_TABLE = "notetable";
-    private static final int DATABASE_VERSION = 1;
+    private static final String DATABASE_NOTE_TABLE = "notetable";
+    private static final int DATABASE_VERSION = 2;
 
     private DBHelper dbHelper;
     private final Context context;
@@ -45,18 +45,18 @@ public class DBClass {
         dbHelper.close();
     }
 
-    public List<Note> getData() {
+    public List<Note> getNotes() {
 
         List<Note> notes = new ArrayList<>();
 
-        String columns[] = new String[]{KEY_ROWID, KEY_TITLE, KEY_CONTENT, KEY_DATE};
+        String columns[] = new String[]{KEY_NOTE_ROWID, KEY_NOTE_TITLE, KEY_NOTE_CONTENT, KEY_NOTE_DATE};
 
-        Cursor cursor = noteDatabase.query(DATABASE_TABLE, columns, null , null, null, null, null);
+        Cursor cursor = noteDatabase.query(DATABASE_NOTE_TABLE, columns, null , null, null, null, null);
 
-        int iRow = cursor.getColumnIndex(KEY_ROWID);
-        int iTitle = cursor.getColumnIndex(KEY_TITLE);
-        int iContent = cursor.getColumnIndex(KEY_CONTENT);
-        int iDate = cursor.getColumnIndex(KEY_DATE);
+        int iRow = cursor.getColumnIndex(KEY_NOTE_ROWID);
+        int iTitle = cursor.getColumnIndex(KEY_NOTE_TITLE);
+        int iContent = cursor.getColumnIndex(KEY_NOTE_CONTENT);
+        int iDate = cursor.getColumnIndex(KEY_NOTE_DATE);
 
         for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()){
             Note obj = new Note();
@@ -70,25 +70,33 @@ public class DBClass {
         return notes;
     }
 
-    public void deleteEntry(long dataId) {
-        noteDatabase.delete(DATABASE_TABLE, KEY_ROWID + "=" + dataId, null);
+    public void deleteEntry(long dataId, String type) {
+        if(type.equalsIgnoreCase("note")){
+            noteDatabase.delete(DATABASE_NOTE_TABLE, KEY_NOTE_ROWID + "=" + dataId, null);
+        }
     }
 
-    public long updateEntry(String id, String title, String content) {
-        ContentValues cv = new ContentValues();
-        cv.put(KEY_ROWID, id);
-        cv.put(KEY_TITLE, title);
-        cv.put(KEY_CONTENT, content);
-        cv.put(KEY_DATE, Calendar.getInstance().getTimeInMillis()+"");
-        return noteDatabase.update(DATABASE_TABLE, cv, KEY_ROWID + "=" + id, null);
+    public long updateEntry(String id, String title, String content, String type) {
+        if(type.equalsIgnoreCase("note")){
+            ContentValues cv = new ContentValues();
+            cv.put(KEY_NOTE_ROWID, id);
+            cv.put(KEY_NOTE_TITLE, title);
+            cv.put(KEY_NOTE_CONTENT, content);
+            cv.put(KEY_NOTE_DATE, Calendar.getInstance().getTimeInMillis()+"");
+            return noteDatabase.update(DATABASE_NOTE_TABLE, cv, KEY_NOTE_ROWID + "=" + id, null);
+        }
+        return 0l;
     }
 
-    public long createEntry(String title, String content) {
-        ContentValues cv = new ContentValues();
-        cv.put(KEY_TITLE, title);
-        cv.put(KEY_CONTENT, content);
-        cv.put(KEY_DATE, Calendar.getInstance().getTimeInMillis()+"");
-        return noteDatabase.insert(DATABASE_TABLE, null, cv);
+    public long createEntry(String title, String content, String type) {
+        if(type.equalsIgnoreCase("note")){
+            ContentValues cv = new ContentValues();
+            cv.put(KEY_NOTE_TITLE, title);
+            cv.put(KEY_NOTE_CONTENT, content);
+            cv.put(KEY_NOTE_DATE, Calendar.getInstance().getTimeInMillis()+"");
+            return noteDatabase.insert(DATABASE_NOTE_TABLE, null, cv);
+        }
+        return 0l;
     }
 
     private static class DBHelper extends SQLiteOpenHelper {
@@ -99,11 +107,11 @@ public class DBClass {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            db.execSQL("CREATE TABLE " + DATABASE_TABLE + " ( "
-                    + KEY_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
-                    + KEY_TITLE + " TEXT NOT NULL, "
-                    + KEY_CONTENT + " TEXT NOT NULL, "
-                    + KEY_DATE + " TEXT NOT NULL); ");
+            db.execSQL("CREATE TABLE " + DATABASE_NOTE_TABLE + " ( "
+                    + KEY_NOTE_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
+                    + KEY_NOTE_TITLE + " TEXT NOT NULL, "
+                    + KEY_NOTE_CONTENT + " TEXT NOT NULL, "
+                    + KEY_NOTE_DATE + " TEXT NOT NULL); ");
         }
 
         @Override

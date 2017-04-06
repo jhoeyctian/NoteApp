@@ -59,7 +59,7 @@ public class NoteFragment extends DialogFragment {
                     edit_text_id.getText()+"",
                     (edit_text_title.getText().toString().length()>0?
                             edit_text_title.getText()+"" : (edit_text_note.getText().toString().split(" ")[0]) ),
-                    edit_text_note.getText()+""
+                    edit_text_note.getText()+"", "note"
 
             );
             dbClass.close();
@@ -73,7 +73,7 @@ public class NoteFragment extends DialogFragment {
 
                     (edit_text_title.getText().toString().length()>0?
                     edit_text_title.getText()+"" : (edit_text_note.getText().toString().split(" ")[0]) ),
-                    edit_text_note.getText()+""
+                    edit_text_note.getText()+"", "note"
 
             );
             dbClass.close();
