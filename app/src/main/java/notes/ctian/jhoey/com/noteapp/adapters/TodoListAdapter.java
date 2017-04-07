@@ -8,11 +8,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 import notes.ctian.jhoey.com.noteapp.R;
-import notes.ctian.jhoey.com.noteapp.models.ToDo;
+import notes.ctian.jhoey.com.noteapp.models.TodoItem;
 
 /**
  * Created by jhoey on 4/6/2017.
@@ -20,10 +21,10 @@ import notes.ctian.jhoey.com.noteapp.models.ToDo;
 
 public class TodoListAdapter extends BaseAdapter {
 
-    private List<ToDo> toDoList;
+    private List<TodoItem> toDoList;
     private Context context;
 
-    public TodoListAdapter(Context context, List<ToDo> toDoList) {
+    public TodoListAdapter(Context context, List<TodoItem> toDoList) {
         this.context = context;
         this.toDoList = toDoList;
     }
@@ -64,8 +65,23 @@ public class TodoListAdapter extends BaseAdapter {
         viewHolder.todo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewHolder.todo.setPaintFlags(viewHolder.todo.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-                viewHolder.status.setVisibility(View.VISIBLE);
+                if(viewHolder.check.getVisibility() == View.VISIBLE){
+                    viewHolder.todo.setPaintFlags(0);
+                    viewHolder.check.setVisibility(View.GONE);
+                    viewHolder.delete.setVisibility(View.VISIBLE);
+                } else {
+                    viewHolder.todo.setPaintFlags(viewHolder.todo.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                    viewHolder.check.setVisibility(View.VISIBLE);
+                    viewHolder.delete.setVisibility(View.GONE);
+                }
+
+            }
+        });
+
+        viewHolder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(), "remove item", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -74,11 +90,13 @@ public class TodoListAdapter extends BaseAdapter {
 
     class ViewHolder {
         TextView todo;
-        ImageView status;
+        ImageView check;
+        ImageView delete;
 
         public ViewHolder(View view){
             todo = (TextView) view.findViewById(R.id.todo_text);
-            status = (ImageView) view.findViewById(R.id.todo_img);
+            check = (ImageView) view.findViewById(R.id.todo_check);
+            delete = (ImageView) view.findViewById(R.id.todo_del);
         }
     }
 }

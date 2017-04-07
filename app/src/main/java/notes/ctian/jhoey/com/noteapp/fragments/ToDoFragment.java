@@ -1,18 +1,20 @@
 package notes.ctian.jhoey.com.noteapp.fragments;
 
+import android.app.DialogFragment;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import notes.ctian.jhoey.com.noteapp.R;
 import notes.ctian.jhoey.com.noteapp.adapters.TodoListAdapter;
-import notes.ctian.jhoey.com.noteapp.models.ToDo;
+import notes.ctian.jhoey.com.noteapp.models.TodoItem;
 
 /**
  * Created by jhoey on 4/6/2017.
@@ -22,7 +24,9 @@ public class ToDoFragment extends BaseFragment {
 
     ListView todo_list_view;
     TodoListAdapter todoListAdapter;
-    List<ToDo> toDoList;
+    List<TodoItem> toDoList;
+    TextView todo_add_item;
+    DialogFragment addItemFragment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,6 +48,16 @@ public class ToDoFragment extends BaseFragment {
 
         todoListAdapter = new TodoListAdapter(getActivity().getApplicationContext(), toDoList);
         todo_list_view.setAdapter(todoListAdapter);
+
+        todo_add_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                addItemFragment = new TodoFormFragment();
+                addItemFragment.show(getActivity().getFragmentManager(), "newItem");
+
+            }
+        });
     }
 
     private void write(String log){
@@ -53,8 +67,8 @@ public class ToDoFragment extends BaseFragment {
     private void initData() {
         toDoList = new ArrayList<>();
 
-        for (int x = 0; x < 10 ; x++){
-            ToDo toDo = new ToDo();
+        for (int x = 0; x < 5 ; x++){
+            TodoItem toDo = new TodoItem();
             toDo.setTodo(x+" test");
             toDoList.add(toDo);
         }
@@ -62,5 +76,6 @@ public class ToDoFragment extends BaseFragment {
 
     private void initUI(View view) {
         todo_list_view = (ListView) view.findViewById(R.id.todo_list_view);
+        todo_add_item = (TextView) view.findViewById(R.id.todo_add_item);
     }
 }

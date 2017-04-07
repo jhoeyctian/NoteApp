@@ -7,33 +7,60 @@
 
 
     <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="@color/colorPrimary"
         android:id="@+id/titleLayout">
 
-        <EditText
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left|center_vertical"
+            android:orientation="vertical"
             android:layout_weight="1"
-            android:paddingLeft="5dp"
-            android:text="Title Here"
-            android:textColor="@color/material_drawer_dark_primary_text" />
+            android:layout_gravity="center|center_vertical">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:layout_weight="1"
+                android:paddingLeft="5dp"
+                android:hint="Title Here"
+                android:textColor="@color/material_drawer_dark_primary_text" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:paddingLeft="5dp"
+                android:text="Date Here"
+                android:textColor="@color/icons_and_text" />
+        </LinearLayout>
 
         <TextView
+            android:id="@+id/todo_add_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right|center_vertical"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:text="Date Here"
+            android:drawableRight="@drawable/ic_add_white_24dp"
+            android:gravity="center_vertical"
+            android:text="(Add Item)"
             android:textColor="@color/icons_and_text" />
+
+
     </LinearLayout>
 
-    <ListView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/todo_list_view"/>
+        android:layout_height="wrap_content">
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/todo_list_view"/>
+    </LinearLayout>
+
+
 
 </LinearLayout>

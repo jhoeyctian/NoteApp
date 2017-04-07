@@ -14,12 +14,19 @@
         android:layout_weight="1"
         android:text="Todo Here"
         android:textColor="@color/md_dark_background" />
-    <ImageView
-        android:id="@+id/todo_img"
-        android:layout_width="wrap_content"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_check_24dp"
-        android:visibility="invisible"/>
+
+        <ImageView
+            android:id="@+id/todo_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_check"
+            android:visibility="invisible"/>
+        <ImageView
+            android:id="@+id/todo_del"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_delete"
+            android:visibility="visible"/>
+
 
 </LinearLayout>

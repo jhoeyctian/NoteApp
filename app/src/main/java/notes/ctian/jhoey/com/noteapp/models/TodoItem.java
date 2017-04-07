@@ -4,7 +4,7 @@ package notes.ctian.jhoey.com.noteapp.models;
  * Created by jhoey on 4/6/2017.
  */
 
-public class ToDo {
+public class TodoItem {
 
     int id;
     String todo;
