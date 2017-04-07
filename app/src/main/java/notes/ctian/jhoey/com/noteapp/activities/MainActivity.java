@@ -21,6 +21,7 @@ import notes.ctian.jhoey.com.noteapp.R;
 import notes.ctian.jhoey.com.noteapp.fragments.NoteListFragment;
 import notes.ctian.jhoey.com.noteapp.fragments.SettingsFragment;
 import notes.ctian.jhoey.com.noteapp.fragments.ToDoFragment;
+import notes.ctian.jhoey.com.noteapp.fragments.ToDoListFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NoteListFragment.OnFragmentInteractionListener {
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity
                                 case 2:
                                     //calendar
                                     try{
-                                        fragment = new ToDoFragment();
+                                        fragment = new ToDoListFragment();
                                         openFragment(fragment, "Calendar");
                                     }catch (Exception ex){
                                         ex.printStackTrace();

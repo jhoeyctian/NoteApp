@@ -18,7 +18,7 @@ import notes.ctian.jhoey.com.noteapp.models.ToDo;
  * Created by jhoey on 4/6/2017.
  */
 
-public class ToDoFragment extends Fragment {
+public class ToDoFragment extends BaseFragment {
 
     ListView todo_list_view;
     TodoListAdapter todoListAdapter;
