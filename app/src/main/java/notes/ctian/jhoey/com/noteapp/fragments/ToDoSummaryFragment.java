@@ -97,17 +97,16 @@ public class ToDoSummaryFragment extends Fragment {
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
 
-                /*int swipedPosition = viewHolder.getAdapterPosition();
-                NoteListAdapter adapter = (NoteListAdapter) mRecyclerView.getAdapter();
-                Note selectedNote = adapter.getItem(swipedPosition);
-
-                DBClass dbClass = new DBClass(getActivity().getApplicationContext());
-                dbClass.open();
-                dbClass.deleteEntry(selectedNote.getId(), "note");
-                dbClass.close();
+                int swipedPosition = viewHolder.getAdapterPosition();
+                TodoSummaryListAdapter adapter = (TodoSummaryListAdapter) mRecyclerView.getAdapter();
+//                Note selectedNote = adapter.getItem(swipedPosition);
+//
+//                DBClass dbClass = new DBClass(getActivity().getApplicationContext());
+//                dbClass.open();
+//                dbClass.deleteEntry(selectedNote.getId(), "note");
+//                dbClass.close();
 
                 adapter.removeItem(swipedPosition);
-*/
 
             }
 
