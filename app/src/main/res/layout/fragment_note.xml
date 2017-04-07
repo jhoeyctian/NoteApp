@@ -40,7 +40,6 @@
         android:hint="Notes Here"
         android:inputType="textMultiLine"
         android:padding="@dimen/margin_padding_small"
-        android:scrollbars="vertical"
-        android:textSize="@dimen/text_size_normal"/>
+        android:scrollbars="vertical"/>
 
 </RelativeLayout>

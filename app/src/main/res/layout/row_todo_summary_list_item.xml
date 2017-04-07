@@ -10,8 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-bold"
-        android:gravity="left"
-        android:textSize="@dimen/text_size_xxnormal" />
+        android:gravity="left" />
 
     <TextView
         android:id="@+id/text_view_todo_date"
@@ -20,8 +19,7 @@
         android:fontFamily="sans-serif-light"
         android:gravity="left"
         android:textStyle="italic"
-        android:textColor="?android:attr/textColorSecondary"
-        android:textSize="@dimen/text_size_normal" />
+        android:textColor="?android:attr/textColorSecondary" />
 
 
 </LinearLayout>

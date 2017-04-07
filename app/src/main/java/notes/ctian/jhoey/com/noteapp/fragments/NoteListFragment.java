@@ -14,9 +14,11 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.melnykov.fab.FloatingActionButton;
 
+import java.util.Date;
 import java.util.List;
 
 import notes.ctian.jhoey.com.noteapp.R;
@@ -132,35 +134,28 @@ public class NoteListFragment extends Fragment {
 
             }
 
-            @Override
-            public int getMovementFlags(RecyclerView recyclerView,
-                                        RecyclerView.ViewHolder viewHolder) {
-                int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
-                int swipeFlags = ItemTouchHelper.START | ItemTouchHelper.END;
-                return makeMovementFlags(dragFlags, swipeFlags);
-            }
-
         };
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
         itemTouchHelper.attachToRecyclerView(mRecyclerView);
 
-        mRecyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+       /* mRecyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
             @Override
             public boolean onInterceptTouchEvent(RecyclerView recyclerView, MotionEvent motionEvent) {
                 View child = recyclerView.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
 
                 if (child != null && mGestureDetector.onTouchEvent(motionEvent)) {
-                    int position = recyclerView.getChildLayoutPosition(child);
-                    Note selectedNote = mNotes.get(position);
 
-                    fragment = new NoteFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("id", selectedNote.getId()+"");
-                    bundle.putString("title", selectedNote.getTitle());
-                    bundle.putString("note", selectedNote.getContent());
-                    fragment.setArguments(bundle);
-                    fragment.show(getActivity().getFragmentManager(), "newNote");
+                        int position = recyclerView.getChildLayoutPosition(child);
+                        Note selectedNote = mNotes.get(position);
+
+                        fragment = new NoteFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("id", selectedNote.getId()+"");
+                        bundle.putString("title", selectedNote.getTitle());
+                        bundle.putString("note", selectedNote.getContent());
+                        fragment.setArguments(bundle);
+                        fragment.show(getActivity().getFragmentManager(), "newNote");
 
 
                 }
@@ -177,7 +172,7 @@ public class NoteListFragment extends Fragment {
             public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
 
             }
-        });
+        });*/
 
         DBClass dbClass = new DBClass(getContext());
         dbClass.open();

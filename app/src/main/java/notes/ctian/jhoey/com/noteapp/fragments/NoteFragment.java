@@ -60,7 +60,6 @@ public class NoteFragment extends BaseFragment {
 
             );
             dbClass.close();
-            ((MainActivity) getActivity()).refresh();
 
         } else if(edit_text_note.getText().toString().length()>0){
             /** if no title is given, first word of the note will be the title */
@@ -74,9 +73,10 @@ public class NoteFragment extends BaseFragment {
 
             );
             dbClass.close();
-            ((MainActivity) getActivity()).refresh();
         }
 
+        ((MainActivity) getActivity()).refresh();
+        dismiss();
 
     }
 }

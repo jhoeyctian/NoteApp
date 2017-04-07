@@ -1,17 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:id="@+id/note_list_id"
     android:padding="@dimen/margin_padding_small"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/text_view_note_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-bold"
+        android:visibility="gone"
+        android:gravity="left"/>
+
+    <TextView
+        android:id="@+id/text_view_note_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-bold"
+        android:visibility="gone"
+        android:gravity="left"/>
 
     <TextView
         android:id="@+id/text_view_note_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-bold"
-        android:gravity="left"
-        android:textSize="@dimen/text_size_xxnormal" />
+        android:gravity="left"/>
 
     <TextView
         android:id="@+id/text_view_note_date"
@@ -20,8 +36,7 @@
         android:fontFamily="sans-serif-light"
         android:gravity="left"
         android:textStyle="italic"
-        android:textColor="?android:attr/textColorSecondary"
-        android:textSize="@dimen/text_size_normal" />
+        android:textColor="?android:attr/textColorSecondary"/>
 
 
 </LinearLayout>
