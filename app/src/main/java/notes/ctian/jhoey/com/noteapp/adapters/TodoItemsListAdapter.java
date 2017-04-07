@@ -19,12 +19,12 @@ import notes.ctian.jhoey.com.noteapp.models.TodoItem;
  * Created by jhoey on 4/6/2017.
  */
 
-public class TodoListAdapter extends BaseAdapter {
+public class TodoItemsListAdapter extends BaseAdapter {
 
     private List<TodoItem> toDoList;
     private Context context;
 
-    public TodoListAdapter(Context context, List<TodoItem> toDoList) {
+    public TodoItemsListAdapter(Context context, List<TodoItem> toDoList) {
         this.context = context;
         this.toDoList = toDoList;
     }

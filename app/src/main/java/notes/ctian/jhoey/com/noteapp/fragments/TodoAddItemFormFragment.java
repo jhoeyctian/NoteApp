@@ -16,7 +16,7 @@ import notes.ctian.jhoey.com.noteapp.activities.MainActivity;
  * Created by jhoey on 4/7/2017.
  */
 
-public class TodoFormFragment extends BaseFragment {
+public class TodoAddItemFormFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

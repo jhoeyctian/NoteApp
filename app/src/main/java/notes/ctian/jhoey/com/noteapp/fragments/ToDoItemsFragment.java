@@ -7,23 +7,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import notes.ctian.jhoey.com.noteapp.R;
-import notes.ctian.jhoey.com.noteapp.adapters.TodoListAdapter;
+import notes.ctian.jhoey.com.noteapp.adapters.TodoItemsListAdapter;
 import notes.ctian.jhoey.com.noteapp.models.TodoItem;
 
 /**
  * Created by jhoey on 4/6/2017.
  */
 
-public class ToDoFragment extends BaseFragment {
+public class ToDoItemsFragment extends BaseFragment {
 
     ListView todo_list_view;
-    TodoListAdapter todoListAdapter;
+    TodoItemsListAdapter todoListAdapter;
     List<TodoItem> toDoList;
     TextView todo_add_item;
     DialogFragment addItemFragment;
@@ -46,14 +45,14 @@ public class ToDoFragment extends BaseFragment {
 
         write("data size : " + toDoList.size());
 
-        todoListAdapter = new TodoListAdapter(getActivity().getApplicationContext(), toDoList);
+        todoListAdapter = new TodoItemsListAdapter(getActivity().getApplicationContext(), toDoList);
         todo_list_view.setAdapter(todoListAdapter);
 
         todo_add_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                addItemFragment = new TodoFormFragment();
+                addItemFragment = new TodoAddItemFormFragment();
                 addItemFragment.show(getActivity().getFragmentManager(), "newItem");
 
             }

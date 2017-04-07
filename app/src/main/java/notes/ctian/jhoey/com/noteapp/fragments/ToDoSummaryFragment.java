@@ -16,7 +16,7 @@ import notes.ctian.jhoey.com.noteapp.R;
  * Created by jhoey on 4/7/2017.
  */
 
-public class ToDoListFragment extends Fragment {
+public class ToDoSummaryFragment extends Fragment {
 
     FloatingActionButton todoAdd;
     DialogFragment fragment;
@@ -40,7 +40,7 @@ public class ToDoListFragment extends Fragment {
             public void onClick(View v) {
                 /** show to do editor */
 
-                fragment = new ToDoFragment();
+                fragment = new ToDoItemsFragment();
                 fragment.show(getActivity().getFragmentManager(), "todo");
 
             }
