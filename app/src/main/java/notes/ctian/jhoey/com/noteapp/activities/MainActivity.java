@@ -65,8 +65,8 @@ public class MainActivity extends AppCompatActivity
                                 case 1:
                                     //home
                                     try{
-                                        fragment = new NoteListFragment();
-                                        openFragment(fragment, "Home");
+//                                        fragment = new HomeHolder();
+//                                        openFragment(fragment, "Home");
                                     }catch (Exception ex){
                                         ex.printStackTrace();
                                     }

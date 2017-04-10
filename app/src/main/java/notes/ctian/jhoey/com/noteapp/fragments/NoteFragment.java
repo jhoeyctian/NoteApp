@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import notes.ctian.jhoey.com.noteapp.R;
+import notes.ctian.jhoey.com.noteapp.activities.HomeHolder;
 import notes.ctian.jhoey.com.noteapp.activities.MainActivity;
 import notes.ctian.jhoey.com.noteapp.data.DBClass;
 import notes.ctian.jhoey.com.noteapp.models.LinedEditText;
@@ -75,7 +76,10 @@ public class NoteFragment extends BaseFragment {
             dbClass.close();
         }
 
-        ((MainActivity) getActivity()).refresh();
+        //TODO refresh list here
+
+        
+
         dismiss();
 
     }
