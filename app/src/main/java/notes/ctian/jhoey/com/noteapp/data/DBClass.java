@@ -11,6 +11,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import notes.ctian.jhoey.com.noteapp.models.Note;
+import notes.ctian.jhoey.com.noteapp.models.TodoList;
 
 /**
  * Created by jhoey on 4/4/2017.
@@ -81,9 +82,35 @@ public class DBClass {
         return notes;
     }
 
+    public List<TodoList> getTodos() {
+
+        List<TodoList> todos = new ArrayList<>();
+
+        String columns[] = new String[]{KEY_TODO_ROWID, KEY_TODO_TITLE, KEY_TODO_DATE};
+
+        Cursor cursor = noteDatabase.query(DATABASE_TODO_TABLE, columns, null , null, null, null, null);
+
+        int iRow = cursor.getColumnIndex(KEY_TODO_ROWID);
+        int iTitle = cursor.getColumnIndex(KEY_TODO_TITLE);
+        int iDate = cursor.getColumnIndex(KEY_TODO_DATE);
+
+        for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()){
+            TodoList obj = new TodoList();
+            obj.setId(Long.parseLong(cursor.getString(iRow)));
+            obj.setTitle(cursor.getString(iTitle));
+            obj.setDate(Long.parseLong(cursor.getString(iDate))+"");
+            todos.add(obj);
+        }
+
+        return todos;
+    }
+
     public void deleteEntry(long dataId, String type) {
         if(type.equalsIgnoreCase("note")){
             noteDatabase.delete(DATABASE_NOTE_TABLE, KEY_NOTE_ROWID + "=" + dataId, null);
+        }
+        if(type.equalsIgnoreCase("todo")){
+            noteDatabase.delete(DATABASE_TODO_TABLE, KEY_TODO_ROWID + "=" + dataId, null);
         }
     }
 
@@ -106,6 +133,12 @@ public class DBClass {
             cv.put(KEY_NOTE_CONTENT, content);
             cv.put(KEY_NOTE_DATE, Calendar.getInstance().getTimeInMillis()+"");
             return noteDatabase.insert(DATABASE_NOTE_TABLE, null, cv);
+        }
+        if(type.equalsIgnoreCase("todo")){
+            ContentValues cv = new ContentValues();
+            cv.put(KEY_TODO_TITLE, title);
+            cv.put(KEY_TODO_DATE, Calendar.getInstance().getTimeInMillis()+"");
+            return noteDatabase.insert(DATABASE_TODO_TABLE, null, cv);
         }
         return 0l;
     }

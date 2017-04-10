@@ -26,6 +26,7 @@
                 android:layout_weight="1"
                 android:paddingLeft="5dp"
                 android:hint="Title Here"
+                android:id="@+id/todoTitle"
                 android:textColor="@color/material_drawer_dark_primary_text" />
 
             <TextView

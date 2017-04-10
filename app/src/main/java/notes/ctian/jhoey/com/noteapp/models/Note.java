@@ -1,6 +1,7 @@
 package notes.ctian.jhoey.com.noteapp.models;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -58,7 +59,8 @@ public class Note {
 
     public String getReadableModifiedDate(){
         SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy - h:mm a", Locale.getDefault());
-        Date modifiedDate = new Date();
-        return sdf.format(modifiedDate);
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(dateCreated);
+        return sdf.format(cal.getTime());
     }
 }

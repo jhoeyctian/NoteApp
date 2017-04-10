@@ -21,6 +21,7 @@ import java.util.List;
 
 import notes.ctian.jhoey.com.noteapp.R;
 import notes.ctian.jhoey.com.noteapp.adapters.TodoSummaryListAdapter;
+import notes.ctian.jhoey.com.noteapp.data.DBClass;
 import notes.ctian.jhoey.com.noteapp.models.TodoList;
 
 /**
@@ -46,7 +47,7 @@ public class ToDoSummaryFragment extends Fragment {
 
     RecyclerView mRecyclerView;
     LinearLayoutManager mLayoutManager;
-    List<TodoList> mNotes;
+    List<TodoList> todos;
     TodoSummaryListAdapter mAdapter;
 
     public void setupList() {
@@ -77,12 +78,12 @@ public class ToDoSummaryFragment extends Fragment {
 
                 int swipedPosition = viewHolder.getAdapterPosition();
                 TodoSummaryListAdapter adapter = (TodoSummaryListAdapter) mRecyclerView.getAdapter();
-//                Note selectedNote = adapter.getItem(swipedPosition);
-//
-//                DBClass dbClass = new DBClass(getActivity().getApplicationContext());
-//                dbClass.open();
-//                dbClass.deleteEntry(selectedNote.getId(), "note");
-//                dbClass.close();
+                TodoList selectedTodo = adapter.getItem(swipedPosition);
+
+                DBClass dbClass = new DBClass(getActivity().getApplicationContext());
+                dbClass.open();
+                dbClass.deleteEntry(selectedTodo.getId(), "todo");
+                dbClass.close();
 
                 adapter.removeItem(swipedPosition);
 
@@ -135,21 +136,21 @@ public class ToDoSummaryFragment extends Fragment {
             }
         });
 
-        /*DBClass dbClass = new DBClass(getContext());
+        DBClass dbClass = new DBClass(getContext());
         dbClass.open();
-        mNotes = dbClass.getNotes();
-        dbClass.close();*/
+        todos = dbClass.getTodos();
+        dbClass.close();
 
-        mNotes = new ArrayList<>();
+        /*todos = new ArrayList<>();
 
         for (int x = 0; x < 6; x++){
             TodoList todoList = new TodoList();
             todoList.setTitle("title " + x);
             todoList.setDate(new Date()+"");
-            mNotes.add(todoList);
-        }
+            todos.add(todoList);
+        }*/
 
-        mAdapter = new TodoSummaryListAdapter(mNotes, getActivity());
+        mAdapter = new TodoSummaryListAdapter(todos, getActivity());
         mRecyclerView.setAdapter(mAdapter);
 
     }

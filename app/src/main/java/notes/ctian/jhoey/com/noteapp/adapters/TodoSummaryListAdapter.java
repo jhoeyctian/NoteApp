@@ -46,7 +46,7 @@ public class TodoSummaryListAdapter extends RecyclerView.Adapter<TodoSummaryList
     public void onBindViewHolder(final ViewHolder holder, int position) {
 
         holder.todoTitle.setText(todoLists.get(position).getTitle()+"");
-        holder.todoCreateDate.setText(todoLists.get(position).getDate()+"");
+        holder.todoCreateDate.setText(todoLists.get(position).getReadableModifiedDate());
     }
 
     @Override

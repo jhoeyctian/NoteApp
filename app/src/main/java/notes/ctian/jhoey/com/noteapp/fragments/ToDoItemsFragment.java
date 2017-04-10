@@ -1,18 +1,22 @@
 package notes.ctian.jhoey.com.noteapp.fragments;
 
 import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import notes.ctian.jhoey.com.noteapp.R;
 import notes.ctian.jhoey.com.noteapp.adapters.TodoItemsListAdapter;
+import notes.ctian.jhoey.com.noteapp.data.DBClass;
 import notes.ctian.jhoey.com.noteapp.models.TodoItem;
 
 /**
@@ -26,6 +30,8 @@ public class ToDoItemsFragment extends BaseFragment {
     List<TodoItem> toDoList;
     TextView todo_add_item;
     DialogFragment addItemFragment;
+
+    EditText todoTitle;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -76,5 +82,18 @@ public class ToDoItemsFragment extends BaseFragment {
     private void initUI(View view) {
         todo_list_view = (ListView) view.findViewById(R.id.todo_list_view);
         todo_add_item = (TextView) view.findViewById(R.id.todo_add_item);
+        todoTitle = (EditText) view.findViewById(R.id.todoTitle);
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+
+        if(todoTitle.getText()!=null){
+            DBClass dbClass = new DBClass(getActivity().getApplicationContext());
+            dbClass.open();
+            dbClass.createEntry(todoTitle.getText()+"", null, "todo");
+            dbClass.close();
+        }
+
     }
 }
