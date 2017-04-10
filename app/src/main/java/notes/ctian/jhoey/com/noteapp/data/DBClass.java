@@ -24,13 +24,19 @@ public class DBClass {
     public static final String KEY_NOTE_DATE = "notedate";
 
     public static final String KEY_TODO_ROWID = "_id";
-    public static final String KEY_TODO_TASK = "todotask";
-    public static final String KEY_TODO_STATUS = "todostatus";
+    public static final String KEY_TODO_TITLE = "todotitle";
+    public static final String KEY_TODO_DATE = "tododate";
+
+    public static final String KEY_TODO_ITEM_ROWID = "_id";
+    public static final String KEY_TODO_ID = "_task_id";
+    public static final String KEY_TODO_ITEM_TASK = "todoitemtask";
+    public static final String KEY_TODO_ITEM_STATUS = "todoitemtaskstatus";
 
     private static final String DATABASE_NAME = "notedb";
     private static final String DATABASE_NOTE_TABLE = "notetable";
-    private static final String DATABASE_TODO_TABLE = "notetable";
-    private static final int DATABASE_VERSION = 4;
+    private static final String DATABASE_TODO_TABLE = "todotable";
+    private static final String DATABASE_TODO_ITEM_TABLE = "todoitemtable";
+    private static final int DATABASE_VERSION = 5;
 
     private DBHelper dbHelper;
     private final Context context;
@@ -120,8 +126,16 @@ public class DBClass {
 
             db.execSQL("CREATE  TABLE IF NOT EXISTS " + DATABASE_TODO_TABLE + " ( "
                     + KEY_TODO_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
-                    + KEY_TODO_TASK + " TEXT NOT NULL, "
-                    + KEY_TODO_STATUS + " TEXT NOT NULL); ");
+                    + KEY_TODO_TITLE + " TEXT NOT NULL, "
+                    + KEY_TODO_DATE + " TEXT NOT NULL); ");
+
+            db.execSQL("CREATE  TABLE IF NOT EXISTS " + DATABASE_TODO_ITEM_TABLE + " ( "
+                    + KEY_TODO_ITEM_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
+                    + KEY_TODO_ITEM_TASK + " TEXT NOT NULL, "
+                    + KEY_TODO_ITEM_STATUS + " TEXT NOT NULL, "
+                    + KEY_TODO_ID + " INTEGER NOT NULL, "
+                    + "FOREIGN KEY("+KEY_TODO_ID+") REFERENCES "+DATABASE_TODO_TABLE+"("+KEY_TODO_ROWID+") "
+                    + "); ");
         }
 
         @Override
