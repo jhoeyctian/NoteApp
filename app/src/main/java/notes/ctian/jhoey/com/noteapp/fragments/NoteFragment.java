@@ -77,9 +77,7 @@ public class NoteFragment extends BaseFragment {
         }
 
         //TODO refresh list here
-
-        
-
+        ((HomeHolder) getActivity()).refresh();
         dismiss();
 
     }

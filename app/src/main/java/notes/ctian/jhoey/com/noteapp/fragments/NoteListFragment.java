@@ -45,7 +45,6 @@ public class NoteListFragment extends Fragment {
        return inflater.inflate(R.layout.fragment_note_list, container, false);
     }
 
-    private FloatingActionButton fab;
     private android.app.DialogFragment fragment;
     FragmentManager fm;
 
@@ -56,16 +55,7 @@ public class NoteListFragment extends Fragment {
         mainView = view;
         setupList();
 
-        fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fm = getActivity().getSupportFragmentManager();
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fragment = new NoteFragment();
-                fragment.show(getActivity().getFragmentManager(), "newNote");
-            }
-        });
     }
 
     @Override
@@ -95,19 +85,10 @@ public class NoteListFragment extends Fragment {
     NoteListAdapter mAdapter;
 
     public void setupList() {
-        mRecyclerView = (RecyclerView) mainView.findViewById(R.id.note_recycler_view);
+        mRecyclerView = (RecyclerView) getActivity().findViewById(R.id.note_recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
-
-        final GestureDetector mGestureDetector =
-                new GestureDetector(getActivity(), new GestureDetector.SimpleOnGestureListener(){
-                    @Override
-                    public boolean onSingleTapUp(MotionEvent e) {
-                        return true;
-                    }
-
-                });
 
         final ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0,
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT ) {
@@ -131,48 +112,12 @@ public class NoteListFragment extends Fragment {
 
                 adapter.removeItem(swipedPosition);
 
-
             }
 
         };
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
         itemTouchHelper.attachToRecyclerView(mRecyclerView);
-
-       /* mRecyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-            @Override
-            public boolean onInterceptTouchEvent(RecyclerView recyclerView, MotionEvent motionEvent) {
-                View child = recyclerView.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
-
-                if (child != null && mGestureDetector.onTouchEvent(motionEvent)) {
-
-                        int position = recyclerView.getChildLayoutPosition(child);
-                        Note selectedNote = mNotes.get(position);
-
-                        fragment = new NoteFragment();
-                        Bundle bundle = new Bundle();
-                        bundle.putString("id", selectedNote.getId()+"");
-                        bundle.putString("title", selectedNote.getTitle());
-                        bundle.putString("note", selectedNote.getContent());
-                        fragment.setArguments(bundle);
-                        fragment.show(getActivity().getFragmentManager(), "newNote");
-
-
-                }
-
-                return false;
-            }
-
-            @Override
-            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-            }
-        });*/
 
         DBClass dbClass = new DBClass(getContext());
         dbClass.open();

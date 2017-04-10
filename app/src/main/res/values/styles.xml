@@ -16,8 +16,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
     <style name="AppTheme.NoActionBar">
+        <item name="android:textColorPrimary">@color/icons_and_text</item>
         <item name="windowActionBar">true</item>
         <item name="windowNoTitle">false</item>
+        <item name="android:itemBackground">@color/colorPrimaryDark</item>
     </style>
 
 </resources>

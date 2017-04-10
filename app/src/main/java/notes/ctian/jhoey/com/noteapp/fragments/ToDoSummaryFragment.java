@@ -29,8 +29,6 @@ import notes.ctian.jhoey.com.noteapp.models.TodoList;
 
 public class ToDoSummaryFragment extends Fragment {
 
-    FloatingActionButton todoAdd;
-    DialogFragment fragment;
     View mainView;
 
     @Override
@@ -43,27 +41,7 @@ public class ToDoSummaryFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mainView = view;
-
-        initUI(view);
-        addHandlers();
         setupList();
-    }
-
-    private void addHandlers() {
-        todoAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                /** show to do editor */
-
-                fragment = new ToDoItemsFragment();
-                fragment.show(getActivity().getFragmentManager(), "todo");
-
-            }
-        });
-    }
-
-    private void initUI(View view) {
-        todoAdd = (FloatingActionButton) view.findViewById(R.id.todoAdd);
     }
 
     RecyclerView mRecyclerView;
@@ -164,7 +142,7 @@ public class ToDoSummaryFragment extends Fragment {
 
         mNotes = new ArrayList<>();
 
-        for (int x = 0; x < 12; x++){
+        for (int x = 0; x < 6; x++){
             TodoList todoList = new TodoList();
             todoList.setTitle("title " + x);
             todoList.setDate(new Date()+"");

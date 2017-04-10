@@ -5,15 +5,36 @@
     <!--if user wants to just exist from the app but not logout-->
 
     <item
-        android:id="@+id/actionLogout"
+        android:id="@+id/actionUserGuide"
         android:orderInCategory="100"
+        android:title="User guide"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/actionSettings"
+        android:orderInCategory="200"
+        android:title="Settings"
+        android:textColor="@color/colorPrimary"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/actionLogout"
+        android:orderInCategory="300"
         android:title="Sign out"
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/actionUserGuide"
-        android:orderInCategory="200"
-        android:title="User guide"
-        app:showAsAction="never"/>
+        android:id="@+id/actionSearch"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="Search"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/actionAdd"
+        android:icon="@drawable/ic_add_black_24dp"
+        android:title="Add Item"
+        app:showAsAction="ifRoom"/>
+
+
 
 </menu>

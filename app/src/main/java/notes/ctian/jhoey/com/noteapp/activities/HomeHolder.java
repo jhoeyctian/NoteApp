@@ -2,24 +2,22 @@ package notes.ctian.jhoey.com.noteapp.activities;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.IdRes;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
 import notes.ctian.jhoey.com.noteapp.R;
+import notes.ctian.jhoey.com.noteapp.fragments.NoteFragment;
 import notes.ctian.jhoey.com.noteapp.fragments.NoteListFragment;
+import notes.ctian.jhoey.com.noteapp.fragments.ToDoItemsFragment;
 import notes.ctian.jhoey.com.noteapp.fragments.ToDoSummaryFragment;
 
 public class HomeHolder extends AppCompatActivity
@@ -49,6 +47,7 @@ public class HomeHolder extends AppCompatActivity
             public void onTabSelected(@IdRes int tabId) {
                 if(tabId == R.id.tabNotes){
 
+                    currentFragment = new NoteListFragment();
                     fm.beginTransaction().replace(contentContainer.getId(),notes).commit();
 
                 } else if(tabId == R.id.tabTodo){
@@ -63,12 +62,9 @@ public class HomeHolder extends AppCompatActivity
     public void refresh(){
 
         if(currentFragment != null && currentFragment instanceof NoteListFragment){
-            ((NoteListFragment) currentFragment).setupList();
+//            ((NoteListFragment) currentFragment).setupList();
+            Toast.makeText(getApplicationContext(), "refresh", Toast.LENGTH_SHORT).show();
         }
-
-        /*if(currentFragment != null && currentFragment instanceof IncomeFragment){
-            ((IncomeFragment) currentFragment).refreshList();
-        }*/
 
     }
 
@@ -82,42 +78,16 @@ public class HomeHolder extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        /*if(id == R.id.actionLogout) {
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-            alertDialogBuilder.setTitle("Warning");
-            alertDialogBuilder
-                    .setMessage("Are you sure you want to sign out?")
-                    .setCancelable(false)
-                    .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog,int id) {
-                            // if this button is clicked, close
-                            // current activity
-                            firebaseAuth = FirebaseAuth.getInstance();
-                            firebaseAuth.signOut();
-                            dialog.cancel();
-                            onBackPressed();
-                            Toast.makeText(PageHolder.this, "Signed out successfully", Toast.LENGTH_LONG).show();
-
-                        }
-                    })
-                    .setNegativeButton("No",new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog,int id) {
-                            // if this button is clicked, just close
-                            // the dialog box and do nothing
-                            dialog.cancel();
-                        }
-                    });
-
-            AlertDialog alertDialog = alertDialogBuilder.create();
-            alertDialog.show();
-
-        }*/
-
-        /*if(id == R.id.actionUserGuide) {
-            InstructionFragment instructionFragment = new InstructionFragment();
-            instructionFragment.show(getSupportFragmentManager(), "instructionFragment");
-        }*/
-
+        if(id == R.id.actionAdd){
+            if(currentFragment !=null && currentFragment instanceof NoteListFragment){
+                NoteFragment fragment = new NoteFragment();
+                fragment.show(getFragmentManager(), "newNote");
+            }
+            if(currentFragment !=null && currentFragment instanceof ToDoSummaryFragment){
+                ToDoItemsFragment fragment = new ToDoItemsFragment();
+                fragment.show(getFragmentManager(), "todo");
+            }
+        }
         return super.onOptionsItemSelected(item);
 
     }

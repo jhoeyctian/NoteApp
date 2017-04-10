@@ -2,8 +2,10 @@
 <tabs>
     <tab
         id="@+id/tabNotes"
+        icon="@drawable/ic_note_black_24dp"
         title="Notes"/>
     <tab
         id="@+id/tabTodo"
+        icon="@drawable/ic_format_list_bulleted_black_24dp"
         title="To Do"/>
 </tabs>

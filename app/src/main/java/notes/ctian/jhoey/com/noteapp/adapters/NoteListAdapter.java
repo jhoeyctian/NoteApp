@@ -16,6 +16,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import notes.ctian.jhoey.com.noteapp.R;
+import notes.ctian.jhoey.com.noteapp.activities.HomeHolder;
 import notes.ctian.jhoey.com.noteapp.activities.MainActivity;
 import notes.ctian.jhoey.com.noteapp.fragments.NoteFragment;
 import notes.ctian.jhoey.com.noteapp.fragments.NoteListFragment;
@@ -70,7 +71,7 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.ViewHo
                 bundle.putString("title", holder.noteTitle.getText()+"");
                 bundle.putString("note", holder.noteContent.getText()+"");
                 fragment.setArguments(bundle);
-                fragment.show(((MainActivity) mContext).getFragmentManager(), "newNote");
+                fragment.show(((HomeHolder) mContext).getFragmentManager(), "newNote");
 
             }
         });

@@ -12,19 +12,4 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <com.melnykov.fab.FloatingActionButton
-        android:id="@+id/todoAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="16dp"
-        android:src="@drawable/ic_add_white_24dp"
-        fab:fab_colorNormal="@color/accent"
-        fab:fab_colorPressed="@color/primary"
-        fab:fab_colorRipple="@color/primary_light"
-        fab:fab_shadow="true"
-        fab:fab_type="normal"/>
-
 </LinearLayout>
