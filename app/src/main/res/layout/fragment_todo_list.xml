@@ -25,6 +25,17 @@
                 android:layout_gravity="left|center_vertical"
                 android:layout_weight="1"
                 android:paddingLeft="5dp"
+                android:hint="ID Here"
+                android:id="@+id/todoID"
+                android:visibility="gone"
+                android:textColor="@color/material_drawer_dark_primary_text" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:layout_weight="1"
+                android:paddingLeft="5dp"
                 android:hint="Title Here"
                 android:id="@+id/todoTitle"
                 android:textColor="@color/material_drawer_dark_primary_text" />

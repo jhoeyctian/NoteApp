@@ -32,6 +32,7 @@ public class ToDoItemsFragment extends BaseFragment {
     DialogFragment addItemFragment;
 
     EditText todoTitle;
+    EditText todoID;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -63,6 +64,11 @@ public class ToDoItemsFragment extends BaseFragment {
 
             }
         });
+
+        if(getArguments()!=null && !getArguments().isEmpty()){
+            todoTitle.setText(getArguments().getString("title"));
+            todoID.setText(getArguments().getString("id"));
+        }
     }
 
     private void write(String log){
@@ -83,16 +89,27 @@ public class ToDoItemsFragment extends BaseFragment {
         todo_list_view = (ListView) view.findViewById(R.id.todo_list_view);
         todo_add_item = (TextView) view.findViewById(R.id.todo_add_item);
         todoTitle = (EditText) view.findViewById(R.id.todoTitle);
+        todoID = (EditText) view.findViewById(R.id.todoID);
     }
 
     @Override
     public void onDismiss(DialogInterface dialog) {
 
-        if(todoTitle.getText()!=null){
-            DBClass dbClass = new DBClass(getActivity().getApplicationContext());
-            dbClass.open();
-            dbClass.createEntry(todoTitle.getText()+"", null, "todo");
-            dbClass.close();
+        if(todoTitle.getText()!=null && todoTitle.getText().toString().length()>0){
+            if(todoID.getText()!=null && todoID.getText().toString().length()>0 ){
+                /** update */
+                DBClass dbClass = new DBClass(getActivity().getApplicationContext());
+                dbClass.open();
+                dbClass.updateEntry(todoID.getText()+"", todoTitle.getText()+"", null, "todo");
+                dbClass.close();
+            } else {
+                /** create */
+                DBClass dbClass = new DBClass(getActivity().getApplicationContext());
+                dbClass.open();
+                dbClass.createEntry(todoTitle.getText()+"", null, "todo");
+                dbClass.close();
+            }
+
         }
 
     }

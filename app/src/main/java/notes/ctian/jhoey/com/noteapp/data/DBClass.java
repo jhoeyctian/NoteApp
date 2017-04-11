@@ -123,6 +123,13 @@ public class DBClass {
             cv.put(KEY_NOTE_DATE, Calendar.getInstance().getTimeInMillis()+"");
             return noteDatabase.update(DATABASE_NOTE_TABLE, cv, KEY_NOTE_ROWID + "=" + id, null);
         }
+        if(type.equalsIgnoreCase("todo")){
+            ContentValues cv = new ContentValues();
+            cv.put(KEY_TODO_ROWID, id);
+            cv.put(KEY_TODO_TITLE, title);
+            cv.put(KEY_TODO_DATE, Calendar.getInstance().getTimeInMillis()+"");
+            return noteDatabase.update(DATABASE_TODO_TABLE, cv, KEY_TODO_ROWID + "=" + id, null);
+        }
         return 0l;
     }
 

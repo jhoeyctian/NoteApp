@@ -1,15 +1,20 @@
 package notes.ctian.jhoey.com.noteapp.adapters;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 import notes.ctian.jhoey.com.noteapp.R;
+import notes.ctian.jhoey.com.noteapp.activities.HomeHolder;
+import notes.ctian.jhoey.com.noteapp.fragments.ToDoItemsFragment;
 import notes.ctian.jhoey.com.noteapp.models.TodoList;
 
 /**
@@ -44,9 +49,20 @@ public class TodoSummaryListAdapter extends RecyclerView.Adapter<TodoSummaryList
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-
+        holder.todoid.setText(todoLists.get(position).getId()+"");
         holder.todoTitle.setText(todoLists.get(position).getTitle()+"");
         holder.todoCreateDate.setText(todoLists.get(position).getReadableModifiedDate());
+        holder.layout_view_todo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToDoItemsFragment fragment = new ToDoItemsFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("id", holder.todoid.getText()+"");
+                bundle.putString("title", holder.todoTitle.getText()+"");
+                fragment.setArguments(bundle);
+                fragment.show(((HomeHolder) mContext).getFragmentManager(), "todo");
+            }
+        });
     }
 
     @Override
@@ -56,12 +72,15 @@ public class TodoSummaryListAdapter extends RecyclerView.Adapter<TodoSummaryList
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public final TextView todoTitle, todoCreateDate;
+        public final TextView todoid, todoTitle, todoCreateDate;
+        public final LinearLayout layout_view_todo;
 
         public ViewHolder(View itemView) {
             super(itemView);
             todoTitle = (TextView)itemView.findViewById(R.id.text_view_todo_title);
             todoCreateDate = (TextView)itemView.findViewById(R.id.text_view_todo_date);
+            layout_view_todo = (LinearLayout) itemView.findViewById(R.id.layout_view_todo);
+            todoid = (TextView) itemView.findViewById(R.id.text_view_todo_id);
         }
 
     }
